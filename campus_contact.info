@@ -1,0 +1,14 @@
+; $Id$
+name = Campus Contact Form
+description = Monitors the campus vocabulary and creates a "Contact Webform" node for each. Provides a set of default Views for displaying this data. Note: the content-type must be activated in the Webform settings, otherwise nodes will be created without forms.
+core = 7.x
+package = City Bible Forum - Campus
+
+dependencies[] = node_export
+dependencies[] = webform
+
+dependencies[] = views
+
+files[] = campus_contact.module
+files[] = campus_contact.install
+files[] = campus_contact.admin.inc

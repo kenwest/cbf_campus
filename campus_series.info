@@ -1,0 +1,7 @@
+; $Id$
+name = Campus Series
+description = Provides infrastructure required for Seriess (Content Type and default Views).
+core = 6.x
+package = City Bible Forum - Campus
+
+dependencies[] = campus_homepage

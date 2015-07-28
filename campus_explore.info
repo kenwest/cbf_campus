@@ -1,0 +1,10 @@
+; $Id$
+name = Campus Explore
+description = Provides infrastructure required for Explore (ContentType and default Views).
+core = 7.x
+package = City Bible Forum - Campus
+
+dependencies[] = campus_homepage
+
+files[] = campus_explore.module
+files[] = campus_explore.install

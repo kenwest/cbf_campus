@@ -1,0 +1,9 @@
+; $Id$
+name = Campus Events
+description = Creates events views for use with campus'.
+core = 6.x
+package = City Bible Forum - Campus
+
+dependencies[] = civicrm
+dependencies[] = civicrm_taxonomy_sync
+dependencies[] = civicrm_advanced_views

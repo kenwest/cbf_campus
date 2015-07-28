@@ -1,0 +1,10 @@
+; $Id$
+name = Campus Tokens
+description = Provides tokens for use with Campuses.
+core = 7.x
+package = City Bible Forum - Campus
+
+dependencies[] = campus_homepage
+dependencies[] = token
+
+files[] = campus_token.module

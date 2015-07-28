@@ -1,0 +1,27 @@
+<?php
+// $Id$
+
+/**
+  * Campus Series
+  * Copyright (c) Tom Gillett 2011
+  */
+
+/* Implementation of hook_views_api(). */
+function campus_series_views_api() {
+	return array(
+		'api' => 2,
+		'path' => drupal_get_path('module', 'campus_series')
+	);
+}
+
+/*Implements hook_views_default_views() */
+function campus_series_views_default_views() {
+	include_once './'. drupal_get_path('module', 'campus_homepage') .'/includes/definitions/'. 'views.campus_series.inc';
+	$views[$view->name] = $view;
+	return $views;
+}
+
+/* Implements hook_cviews_title_replacement - as implemented by campus_homepage */
+function campus_series_cviews_title_replacement(){
+	return array('campus_series');
+}

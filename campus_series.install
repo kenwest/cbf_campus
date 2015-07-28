@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * Implementation of hook_install()
+ */
+function campus_series_install(){
+	$types = node_get_types();
+	if(!in_array('series', $types)){
+		campus_series_install_content_type('campus_series');
+	}
+}
+
+/**
+  * Implementation of hook_uninstall()
+  */
+function campus_series_uninstall(){}
+
+
+function campus_series_install_content_type($type) {
+	$content = array();
+	include_once './'. drupal_get_path('module', 'campus_homepage') .'/includes/definitions/contenttype.' . $type . '.inc';
+
+	$form_state = array();
+	$form = content_copy_import_form($form_state, $type_name);
+	$form_state['values']['type_name'] = '<create>';
+	$form_state['values']['macro'] = '$content = '. var_export($content, 1) .';';
+	$form_state['values']['submit'] = t('Import');
+
+	content_copy_import_form_submit($form, $form_state);
+}

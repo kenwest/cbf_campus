@@ -1,0 +1,18 @@
+; $Id$
+name = Campus
+description = Provides basic infrastructure for campus functionality. Utilises taxonomy_monitor to create/edit a 'Campus Homepage' nods whenever a term in a monitored vocabulary is created or amended (these store basic information about a campus). Also provide default views for campus fixtures.
+core = 7.x
+package = City Bible Forum - Campus
+
+dependencies[] = views
+dependencies[] = page_manager
+
+dependencies[] = gmap
+dependencies[] = location
+
+dependencies[] = taxonomy_monitor
+
+files[] = campus_homepage.module
+files[] = campus_homepage.install
+; files[] = campus_homepage.views.inc
+

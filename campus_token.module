@@ -1,0 +1,76 @@
+<?php
+// $Id$
+/**
+  * Campus Token
+  * Copyright (c) Tom Gillett 2011
+  */
+function campus_token_tokens($type, $tokens, array $data = array(), array $options = array()) {
+	$result = array();
+
+	if ($type != 'campus') {
+		return $result;
+	}
+
+	$args = explode('/', drupal_get_path_alias($_GET['q']));
+
+	if(isset($args[0]) && isset($args[1]) && ($args[0] == 'city')) {
+
+		/* +++ KW 2011-08-27
+		 *
+		 * A hack to treat 'north-sydney' as 'sydney' etc
+		 */
+		switch ($args[1]) {
+			case 'sydney-cbd':
+			case 'sydney-cbd-north':
+			case 'sydney-cbd-south':
+			case 'sydney-legal':
+			case 'sydneys-north-shore':
+			case 'north-sydney':
+			case 'st-leonards':
+			case 'chatswood':
+			case 'macquarie-park':
+			case 'parramatta':
+				$replacement = $args[0].'/sydney/';
+				break;
+			case 'sydney':
+			case 'melbourne':
+			case 'brisbane':
+			case 'perth':
+			case 'adelaide':
+				$replacement = $args[0].'/'.$args[1].'/';
+				break;
+			default:
+				$replacement = '';
+				break;
+		}
+
+		/*
+		 * --- KW 2011-08-27
+		 *
+		 * $tokens['campus-path'] = $args[0].'/'.$args[1].'/';
+		 */
+	} else {
+		$replacement = '';
+	}
+
+	foreach ($tokens as $token => $raw_token) {
+		if ($token == 'path') {
+			$result[$raw_token] = $replacement;
+		}
+	}
+
+	return $result;
+}
+
+function campus_token_token_info() {
+	return array(
+		'types' => array(
+			'campus' => array(
+				'name' => t('Campus'),
+				'description' => t('An area of operation for the City Bible Forum') ) ),
+		'tokens' => array(
+			'campus' => array(
+				'path' => array(
+					'name' => t('Path'),
+					'description' => t('The path for a campus') ) ) ) );
+}

@@ -1,0 +1,22 @@
+<?php
+// $Id$
+
+/**
+  * Campus Explore
+  * Copyright (c) Tom Gillett 2011
+  */
+
+/* Implementation of hook_views_api(). */
+function campus_explore_views_api() {
+	return array(
+		'api' => 3,
+		'path' => drupal_get_path('module', 'campus_explore')
+	);
+}
+
+/*Implements hook_views_default_views() */
+function campus_explore_views_default_views() {
+	include_once DRUPAL_ROOT . '/'. drupal_get_path('module', 'campus_homepage') .'/includes/definitions/views.campus_explore.inc';
+	$views[$view->name] = $view;
+	return $views;
+}
