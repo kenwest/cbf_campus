@@ -31,6 +31,7 @@ function campus_token_tokens($type, $tokens, array $data = array(), array $optio
 			case 'macquarie-park':
 			case 'parramatta':
 				$replacement = $args[0].'/sydney/';
+				$proper = 'Sydney';
 				break;
 			case 'sydney':
 			case 'melbourne':
@@ -38,9 +39,11 @@ function campus_token_tokens($type, $tokens, array $data = array(), array $optio
 			case 'perth':
 			case 'adelaide':
 				$replacement = $args[0].'/'.$args[1].'/';
+				$proper = ucfirst($args[1]);
 				break;
 			default:
 				$replacement = '';
+				$proper = '';
 				break;
 		}
 
@@ -51,11 +54,15 @@ function campus_token_tokens($type, $tokens, array $data = array(), array $optio
 		 */
 	} else {
 		$replacement = '';
+		$proper = '';
 	}
 
 	foreach ($tokens as $token => $raw_token) {
 		if ($token == 'path') {
 			$result[$raw_token] = $replacement;
+		}
+		elseif ($token == 'proper') {
+			$result[$raw_token] = $proper;
 		}
 	}
 
@@ -72,5 +79,11 @@ function campus_token_token_info() {
 			'campus' => array(
 				'path' => array(
 					'name' => t('Path'),
-					'description' => t('The path for a campus') ) ) ) );
+					'description' => t('The path for a campus') ),
+				'proper' => array(
+					'name' => t('Proper'),
+					'description' => t('The proper name of the campus') ),
+			)
+		)
+	);
 }
