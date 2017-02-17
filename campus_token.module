@@ -39,6 +39,7 @@ function campus_token_tokens($type, $tokens, array $data = array(), array $optio
 			case 'perth':
 			case 'adelaide':
 			case 'canberra':
+			case 'hobart':
 				$replacement = $args[0].'/'.$args[1].'/';
 				$proper = ucfirst($args[1]);
 				break;
